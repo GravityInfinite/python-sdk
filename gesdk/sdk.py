@@ -18,7 +18,7 @@ from requests import ConnectionError
 
 __NAME_REGULAR_EXPRESSION = "^\\${0,1}([a-z][a-z\\d_]{0,49})|([a-z][a-z\\d_]{0,50})|(__[a-z][a-z\\d_]{0,50})$"
 __NAME_PATTERN = re.compile(__NAME_REGULAR_EXPRESSION, re.I)
-__version__ = '1.0.4'
+__version__ = '1.0.6'
 
 LIB_NAME = "python"
 LIB_VERSION = __version__
