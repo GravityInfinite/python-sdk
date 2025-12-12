@@ -18,7 +18,10 @@ from requests import ConnectionError
 
 __NAME_REGULAR_EXPRESSION = "^\\${0,1}([a-z][a-z\\d_]{0,49})|([a-z][a-z\\d_]{0,50})|(__[a-z][a-z\\d_]{0,50})$"
 __NAME_PATTERN = re.compile(__NAME_REGULAR_EXPRESSION, re.I)
-__version__ = '1.0.0'
+__version__ = '1.0.2'
+
+LIB_NAME = "python"
+LIB_VERSION = __version__
 
 GE_ROTATE_MODE = Enum('GE_ROTATE_MODE', ('DAILY', 'HOURLY'))
 
@@ -324,7 +327,11 @@ class GEAnalytics(object):
 
             self.__buildData(one_event, 'time', get_now_time())
             self.__buildData(one_event, 'time_free', False)
+            if is_track:
+                properties['$lib'] = LIB_NAME
+                properties['$lib_version'] = LIB_VERSION
             one_event['properties'] = properties
+
             data['event_list'] = [one_event]
         content = json.dumps(data, separators=(str(','), str(':')), cls=GEDateTimeSerializer)
         content_dict = json.loads(content)
@@ -342,8 +349,8 @@ class GEAnalytics(object):
 
     def clear_super_properties(self):
         self.__super_properties = {
-            '$lib': 'ge_python_sdk',
-            '$lib_version': __version__,
+            '$lib': LIB_NAME,
+            '$lib_version': LIB_VERSION,
         }
 
     def set_super_properties(self, super_properties):

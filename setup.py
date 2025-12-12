@@ -19,12 +19,12 @@ def find_version(*paths):
 
 
 setup(
-    name='gravity-python-sdk',
+    name='GEDataSdk',
     version=find_version('gesdk', 'sdk.py'),
     description='Official GEData Analytics library for Python',
     long_description=read('README.md'),
     long_description_content_type='text/markdown',
-    url='https://github.com/GravityInfinite/python-sdk',
+    url='',
     license='Apache',
     author='GEData',
     author_email='pony@gravity-engine.com',
